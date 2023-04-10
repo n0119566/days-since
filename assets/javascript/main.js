@@ -9,16 +9,26 @@ calcDate.addEventListener("click", () => {
   // Get difference between entered dated and todays date
   let diff = calculateDays(date.value);
 
+  // Figure out if its a future date or not
+  let isFutureDate =  (diff < 0) ? true : false;
+
   // Convert the milliseconds to days
   let days = convertMiliseconds(diff, "d");
 
   // Convert the input date to mm/dd/yyyy
   let formattedDate = formatDate(date.value);
 
-  // Display on page
-  document.querySelector(
-    "#total"
-  ).textContent = `Days since ${formattedDate}: ${days}`;
+  // Display on page based on whether its a future or past date
+  if (!isFutureDate){
+    document.querySelector(
+      "#total"
+    ).textContent = `Days since ${formattedDate}: ${days}`;
+  }else{
+    document.querySelector(
+      "#total"
+    ).textContent = `Days until ${formattedDate}: ${days*-1}`;
+  }
+  
 });
 
 // Calculate difference time difference between today and passed date
