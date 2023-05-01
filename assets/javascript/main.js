@@ -22,11 +22,11 @@ calcDate.addEventListener("click", () => {
   if (!isFutureDate) {
     document.querySelector(
       "#total"
-    ).textContent = `It has been ${exactTime.years} years, ${exactTime.months} months, and ${exactTime.days} days since ${formattedDate}`;
+    ).textContent = `It has been ${exactTime.years} year(s), ${exactTime.months} month(s), and ${exactTime.days} day(s) since ${formattedDate}`;
   } else {
     document.querySelector(
       "#total"
-    ).textContent = `It is ${exactTime.years} years, ${exactTime.months} months, and ${exactTime.days} days until ${formattedDate}`;
+    ).textContent = `It is ${exactTime.years} year(s), ${exactTime.months} month(s), and ${exactTime.days} day(s) until ${formattedDate}`;
   }
 });
 
