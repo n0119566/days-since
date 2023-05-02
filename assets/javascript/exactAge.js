@@ -6,9 +6,10 @@
  * 
  * Base code courtesy of Kevin Leary - https://www.kevinleary.net/blog/javascript-age-birthdate-mm-dd-yyyy/
  */
-function exactAge(inputDate) {
-  let startDate = new Date(new Date(inputDate).toISOString().substr(0, 10));
-  const endingDate = new Date().toISOString().substr(0, 10); // YYYY-MM-DD
+function exactAge(inputStartDate, inputEndDate) {
+  let startDate = new Date(new Date(inputStartDate).toISOString().substr(0, 10));
+  let endingDate = new Date(new Date(inputEndDate).toISOString().substr(0, 10));
+
   let endDate = new Date(endingDate);
   if (startDate > endDate) {
     const swap = startDate;

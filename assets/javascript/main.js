@@ -3,11 +3,15 @@
 const calcDate = document.querySelector("#calcDate");
 const isToday = document.querySelector("#today");
 const date = document.querySelector("#date");
+const startDate = document.querySelector("#startDate");
+
 
 // When the Calcuate button is clicked button is clicked
 calcDate.addEventListener("click", () => {
+  let end = date.value;
+  let start = startDate.value;
 
-  const exactTime = exactAge(date.value);
+  const exactTime = exactAge(start, end);
 
   // Get difference between entered dated and todays date in milliseconds
   let diff = calculateDays(date.value);
@@ -30,9 +34,14 @@ calcDate.addEventListener("click", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  startDate.value = "2023-03-27";
+  date.value = new Date().toISOString().split('T')[0];
+});
+
 // Calculate difference time difference between today and passed date
-function calculateDays(date) {
-  return new Date() - Date.parse(date);
+function calculateDays(startDate, endDate) {
+  return Date.parse(startDate) - Date.parse(endDate);
 }
 
 // Format a date string from yyyy-mm-dd to mm/dd/yyyy
