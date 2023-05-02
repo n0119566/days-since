@@ -2,41 +2,31 @@
 
 const calcDate = document.querySelector("#calcDate");
 const isToday = document.querySelector("#today");
-const date = document.querySelector("#date");
+const endDate = document.querySelector("#endDate");
 const startDate = document.querySelector("#startDate");
-
 
 // When the Calcuate button is clicked button is clicked
 calcDate.addEventListener("click", () => {
-  let end = date.value;
+  let end = endDate.value;
   let start = startDate.value;
 
+  // Get difference between entered dated and todays date in milliseconds
   const exactTime = exactAge(start, end);
 
-  // Get difference between entered dated and todays date in milliseconds
-  let diff = calculateDays(date.value);
-
-  // Figure out if its a future date or not
-  let isFutureDate = diff < 0 ? true : false;
-
   // Convert the input string date to mm/dd/yyyy
-  let formattedDate = formatDate(date.value);
+  end = formatDate(end);
+  start = formatDate(start);
 
-  // Display on page based on whether its a future or past date
-  if (!isFutureDate) {
-    document.querySelector(
-      "#total"
-    ).textContent = `It has been ${exactTime.years} year(s), ${exactTime.months} month(s), and ${exactTime.days} day(s) since ${formattedDate}`;
-  } else {
-    document.querySelector(
-      "#total"
-    ).textContent = `It is ${exactTime.years} year(s), ${exactTime.months} month(s), and ${exactTime.days} day(s) until ${formattedDate}`;
-  }
+  // Print out the results
+  document.querySelector(
+    "#total"
+  ).textContent = `It is ${exactTime.years} year(s), ${exactTime.months} month(s), and ${exactTime.days} day(s) between ${start} and ${end}`;
 });
 
+// Wait for page to load and set default dates of 3/27/2023 and today
 document.addEventListener("DOMContentLoaded", () => {
   startDate.value = "2023-03-27";
-  date.value = new Date().toISOString().split('T')[0];
+  endDate.value = new Date().toISOString().split("T")[0];
 });
 
 // Calculate difference time difference between today and passed date
